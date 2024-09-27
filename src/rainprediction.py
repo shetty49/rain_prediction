@@ -20,12 +20,17 @@ from keras import callbacks
 
 np.random.seed(0)
 
-if('google.colab' in sys.modules):
+# Check if running in Google Colab, and handle accordingly (Optional)
+if 'google.colab' in sys.modules:
     from google.colab import drive
-    drive.mount('/content/drive', force_remount = True)
+    drive.mount('/content/drive', force_remount=True)
     DIR = '/content/drive/MyDrive/kaagle'
     file_loc = DIR + "/weatherAUS.csv"
+else:
+    # If not in Google Colab, set the file location to the local dataset
+    file_loc = 'data/dataset.csv'
 
+# Load the dataset
 data = pd.read_csv(file_loc)
 data.head()
 
