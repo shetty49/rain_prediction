@@ -29,7 +29,7 @@ if 'google.colab' in sys.modules:
 else:
     # If not in Google Colab, set the file location to the local dataset
     file_loc = 'data/dataset.csv'
-    
+
 chunk_size = 10000
 chunks = []    
 for chunk in pd.read_csv(file_loc, chunksize=chunk_size):
@@ -252,6 +252,39 @@ cf_matrix = confusion_matrix(y_test, y_pred)
 sns.heatmap(cf_matrix/np.sum(cf_matrix), cmap = cmap1, annot = True, annot_kws = {'size':15})
 
 print(classification_report(y_test, y_pred))
+# Generate the classification report as a string
+classification_rep = classification_report(y_test, y_pred)
+# Save the confusion matrix plot to a file
+plt.savefig('confusion_matrix.png')
+# Create HTML content with the classification report and embedded image
+html_content = f"""
+<html>
+<head>
+    <title>Classification Report and Confusion Matrix</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; }}
+        table {{ width: 50%; border-collapse: collapse; margin: 20px 0; }}
+        th, td {{ padding: 8px 12px; border: 1px solid #ccc; text-align: left; }}
+        th {{ background-color: #f2f2f2; }}
+        h1 {{ color: #333; }}
+        pre {{ background-color: #f8f8f8; padding: 10px; }}
+        img {{ max-width: 100%; height: auto; }}
+    </style>
+</head>
+<body>
+    <h1>Classification Report</h1>
+    <pre>{classification_rep}</pre>
+    <h1>Confusion Matrix</h1>
+    <img src="confusion_matrix.png" alt="Confusion Matrix">
+</body>
+</html>
+"""
+
+# Write the HTML content to a file
+with open('classification_report.html', 'w') as file:
+    file.write(html_content)
+
+print("HTML report with classification report and confusion matrix generated successfully!")
 
 
 
