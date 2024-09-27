@@ -29,11 +29,17 @@ if 'google.colab' in sys.modules:
 else:
     # If not in Google Colab, set the file location to the local dataset
     file_loc = 'data/dataset.csv'
-
+    
+chunk_size = 10000
+chunks = []    
+for chunk in pd.read_csv(file_loc, chunksize=chunk_size):
+    print(chunk.head())
+    chunks.append(chunk)
+    del chunk
 # Load the dataset
-data = pd.read_csv(file_loc)
-data.head()
-
+#data = pd.read_csv(file_loc)
+#data.head()
+data = pd.concat(chunks, ignore_index=True)
 data.info()
 
 #first of all let us evaluate the target and find out if our data is imbalanced or not
