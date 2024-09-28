@@ -281,7 +281,7 @@ html_content = f"""
 """
 
 # Write the HTML content to a file
-with open('/home/ubuntu/var/www/html/classification_report.html', 'w') as file:
+with open('/var/www/html/classification_report.html', 'w') as file:
     file.write(html_content)
 
 print("HTML report with classification report and confusion matrix generated successfully!")
