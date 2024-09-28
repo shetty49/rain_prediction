@@ -260,7 +260,7 @@ plt.savefig('confusion_matrix.png')
 html_content = f"""
 <html>
 <head>
-    <title>Classification Report and Confusion Matrix</title>
+    <title>Classification Report v1</title>
     <style>
         body {{ font-family: Arial, sans-serif; }}
         table {{ width: 50%; border-collapse: collapse; margin: 20px 0; }}
