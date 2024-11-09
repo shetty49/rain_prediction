@@ -325,6 +325,7 @@ with mlflow.start_run():
     # Log the trained model
     mlflow.keras.log_model(model, "model", registered_model_name="RainPredictionModel")
     print("MLFLOW report and confusion matrix generated successfully!")
+    print("mlflow test 0")
 
 
 
