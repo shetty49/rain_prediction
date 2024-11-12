@@ -216,11 +216,11 @@ model.add(Dropout(0.5))
 model.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
 
 # Compiling the ANN
-opt = Adam(learning_rate=0.001)
+opt = Adam(learning_rate=0.00001)
 model.compile(optimizer = opt, loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Train the ANN
-history = model.fit(X_train, y_train, batch_size = 30, epochs = 100, callbacks=[early_stopping], validation_split=0.3)
+history = model.fit(X_train, y_train, batch_size = 32, epochs = 150, callbacks=[early_stopping], validation_split=0.3)
 
 history_df = pd.DataFrame(history.history)
 
