@@ -292,21 +292,21 @@ html_content = f"""
 # mlflow
 
 # Set up MLflow tracking URI and experiment name
-mlflow.set_tracking_uri("http://44.204.113.135:5000")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
 mlflow.set_experiment("rain_prediction")
 
 # Start an MLflow run
 with mlflow.start_run():
     # Log model hyperparameters
-    mlflow.log_param("learning_rate", 0.00009)
+    mlflow.log_param("learning_rate", 0.1)
     mlflow.log_param("batch_size", 32)
-    mlflow.log_param("epochs", 150)
+    mlflow.log_param("epochs", 30)
     
     # Log metrics
     accuracy = accuracy_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred, average='weighted')
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted', zero_division=0)
+    precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
+    recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
     
     mlflow.log_metric("accuracy", accuracy)
     mlflow.log_metric("f1_score", f1)
