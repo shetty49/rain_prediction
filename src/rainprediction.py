@@ -209,18 +209,19 @@ model = Sequential()
 
 model.add(Dense(units = 32, kernel_initializer = 'uniform', activation = 'relu', input_dim = 26))
 model.add(Dense(units = 32, kernel_initializer = 'uniform', activation = 'relu'))
+model.add(Dropout(0.3))
 model.add(Dense(units = 16, kernel_initializer = 'uniform', activation = 'relu'))
-model.add(Dropout(0.25))
+model.add(Dropout(0.3))
 model.add(Dense(units = 8, kernel_initializer = 'uniform', activation = 'relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.3))
 model.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
 
 # Compiling the ANN
-opt = Adam(learning_rate=0.00001)
+opt = Adam(learning_rate=0.1)
 model.compile(optimizer = opt, loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Train the ANN
-history = model.fit(X_train, y_train, batch_size = 32, epochs = 150, callbacks=[early_stopping], validation_split=0.3)
+history = model.fit(X_train, y_train, batch_size = 32, epochs = 30, validation_split=0.3)#, callbacks=[early_stopping]
 
 history_df = pd.DataFrame(history.history)
 
