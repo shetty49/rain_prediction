@@ -3,5 +3,5 @@ numpy
 scikit-learn
 matplotlib
 seaborn
-tensorflow==2.10.0
+tensorflow-cpu
 mlflow
