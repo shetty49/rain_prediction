@@ -20,6 +20,8 @@ from keras.optimizers import Adam
 from tensorflow.keras import regularizers
 from sklearn.metrics import precision_score, recall_score, confusion_matrix, classification_report, accuracy_score, f1_score
 from keras import callbacks
+from tensorflow.keras.models import load_model
+
 
 np.random.seed(0)
 
@@ -327,6 +329,8 @@ with mlflow.start_run():
     mlflow.keras.log_model(model, "model", registered_model_name="RainPredictionModel")
     print("MLFLOW report and confusion matrix generated successfully!")
     print("mlflow test 1")
+    model.save("prediction_model.h5")
+    print("Model saved successfully as 'prediction_model.h5'")
 
 
 
